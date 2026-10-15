@@ -5,7 +5,7 @@
 #   datos/registros.csv        (exportado de la planilla de Google, hoja "registros")
 #   datos/dmc_diario.csv       (opcional: estacion, fecha, tmax, umbral_p90; datos diarios de la DMC)
 #   datos/sitio_estacion.csv   (opcional: sitio, estacion; estación DMC más cercana a cada sitio)
-#   datos/santiagohot_tarde.tif (opcional: mapa de temperatura de la tarde de SantiagoHOT, desde OSF)
+#   datos/santiagohot/          (rasters de SantiagoHOT incluidos en el repo; ver su README)
 # Salidas:
 #   datos/publicos/registros_publicos.csv (sin correo, coordenadas a 3 decimales)
 #   datos/publicos/descomposicion.csv     (pérdida de masa y k por sitio × material)
@@ -105,23 +105,27 @@ cov <- reg |>
     .groups = "drop"
   )
 
-# Zona de calor SantiagoHOT: temperatura del mapa de la tarde en la ubicación de cada sitio
+# Zona de calor SantiagoHOT (datos/santiagohot/): temperatura del aire modelada del 20-01-2024
+# en la ubicación de cada sitio, y cuartil de la tarde calculado sobre toda la ciudad
 coords <- reg |>
   group_by(sitio) |>
   summarise(lat = median(lat, na.rm = TRUE), lon = median(lon, na.rm = TRUE), .groups = "drop")
-if (file.exists("datos/santiagohot_tarde.tif") && requireNamespace("terra", quietly = TRUE)) {
-  r <- terra::rast("datos/santiagohot_tarde.tif")
-  pts <- terra::project(terra::vect(coords, geom = c("lon", "lat"), crs = "EPSG:4326"), terra::crs(r))
-  coords$temp_stgohot <- terra::extract(r, pts)[[2]]
-  cortes <- quantile(coords$temp_stgohot, c(0, 1/3, 2/3, 1), na.rm = TRUE)
-  coords$zona_calor <- if (n_distinct(cortes) == 4) {
-    as.character(cut(coords$temp_stgohot, cortes, labels = c("fresca", "intermedia", "caliente"), include.lowest = TRUE))
-  } else NA_character_
+dir_hot <- "datos/santiagohot"
+if (requireNamespace("terra", quietly = TRUE) && file.exists(file.path(dir_hot, "santiago-chile_af_temp_c.tif"))) {
+  pts <- terra::vect(coords, geom = c("lon", "lat"), crs = "EPSG:4326")
+  for (p in c("am", "af", "pm")) {
+    r <- terra::rast(file.path(dir_hot, sprintf("santiago-chile_%s_temp_c.tif", p)))
+    coords[[paste0("temp_hot_", p)]] <- terra::extract(r, terra::project(pts, terra::crs(r)))[[2]]
+  }
+  q <- read_csv(file.path(dir_hot, "cortes_cuartiles.csv"), show_col_types = FALSE) |> filter(periodo == "af")
+  coords$zona_calor <- as.character(cut(coords$temp_hot_af,
+    c(-Inf, q$q25_c, q$mediana_c, q$q75_c, Inf),
+    labels = c("Q1 fresca", "Q2", "Q3", "Q4 caliente")))
 } else {
-  coords$temp_stgohot <- NA_real_
+  coords[c("temp_hot_am", "temp_hot_af", "temp_hot_pm")] <- NA_real_
   coords$zona_calor <- NA_character_
 }
-cov <- left_join(cov, select(coords, sitio, temp_stgohot, zona_calor), by = "sitio")
+cov <- left_join(cov, select(coords, -lat, -lon), by = "sitio")
 
 desc <- left_join(k_sitio, cov, by = "sitio")
 
@@ -130,7 +134,7 @@ if (requireNamespace("lme4", quietly = TRUE) && n_distinct(masa$sitio) > 5) {
   datos_mod <- left_join(masa, cov, by = "sitio")
   # Solo términos con variación (en un piloto chico algún factor puede tener un solo nivel)
   varia <- function(v) n_distinct(na.omit(datos_mod[[v]])) > 1
-  terminos <- c("t_dias", Filter(varia, c("material", "habitat", "sombra", "riego", "ph_medio", "temp_stgohot")))
+  terminos <- c("t_dias", Filter(varia, c("material", "habitat", "sombra", "riego", "ph_medio", "temp_hot_af")))
   if ("material" %in% terminos && "habitat" %in% terminos) terminos <- c(terminos, "material:habitat")
   # H5: ¿las olas de calor frenan la descomposición, sobre todo sin riego?
   if (varia("dias_ola")) {

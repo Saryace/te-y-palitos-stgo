@@ -63,7 +63,7 @@ Los autores lo atribuyen a una comunidad pobre de hongos saprófitos en la ciuda
 | `JAR` | Jardín doméstico o huerto | — (nuevo) |
 | `NAT` | Vegetación nativa remanente (cerro isla, piedemonte) | Semi-natural (referencia) |
 
-- **Zonas de calor (SantiagoHOT):** además del hábitat, la coordinación busca repartir los sitios entre las **zonas frescas, intermedias y calientes** de los mapas de calor de [SantiagoHOT](https://www.santiagohot.cl). Es una campaña ciudadana de CIGIDEN, parte del programa Heat Watch de NOAA, que midió la temperatura del aire en todo el Gran Santiago el 20 de enero de 2024 (7–8, 15–16 y 19–20 h). Al inscribirse, se ubica el sitio en el mapa de la tarde para asignar su zona.
+- **Zonas de calor (SantiagoHOT):** además del hábitat, la coordinación busca repartir los sitios entre las **zonas de calor, de Q1 fresca a Q4 caliente**, de los mapas de calor de [SantiagoHOT](https://www.santiagohot.cl). Es una campaña ciudadana de CIGIDEN, parte del programa Heat Watch de NOAA, que midió la temperatura del aire en todo el Gran Santiago el 20 de enero de 2024 (7–8, 15–16 y 19–20 h). Al inscribirse, se ubica el sitio en el mapa de la tarde (`datos/santiagohot/`) para asignar su zona.
 
 ---
 
@@ -172,9 +172,9 @@ Registrar la **clase textural**, el **largo de la cinta (cm)** y la sensación.
 
 **La covariable de temperatura del piloto es la zona de calor de SantiagoHOT**, que se asigna a todos los sitios con sus coordenadas, sin depender de que el estudiante tenga termómetro:
 
-1. Descargar los mapas de temperatura ambiental modelada (tarde, 15–16 h) del [conjunto de datos abierto de SantiagoHOT en OSF](https://osf.io/wx3r2/overview?view_only=2d8935fd8d354c28982e81f9452f41df) y guardarlos como `datos/santiagohot_tarde.tif`.
-2. El script `analisis/analisis_piloto.R` extrae la temperatura en la ubicación de cada sitio y la clasifica en terciles: **fresca**, **intermedia** y **caliente**.
-3. Se usan tanto el valor continuo (°C) como la zona en los modelos.
+1. Los rasters de SantiagoHOT (mañana, tarde y atardecer, 10 m) vienen incluidos en el repositorio, en `datos/santiagohot/`.
+2. El script `analisis/analisis_piloto.R` extrae las tres temperaturas en la ubicación de cada sitio. Luego asigna la **zona de calor** según el cuartil de la tarde calculado sobre **toda la ciudad**: Q1 fresca (≤ 31,2 °C), Q2, Q3 y Q4 caliente (> 32,0 °C). Los cortes están en `datos/santiagohot/cortes_cuartiles.csv`.
+3. En los modelos se usa la temperatura de la tarde (°C) como variable continua, y la zona para describir y equilibrar la muestra.
 
 **Temperatura del suelo medida en terreno (opcional)**
 

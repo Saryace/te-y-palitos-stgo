@@ -10,7 +10,7 @@ Este piloto adapta el diseño de [Kotze & Setälä (2021, *Urban Ecosystems*)](h
 | **Materiales** | 2 bolsas piramidales de té verde y 2 palitos de madera por estación |
 | **Diseño** | 3 estaciones por sitio, enterradas a 8 cm el 21 de diciembre; se retira **una por mes** (21 ene, 21 feb y 21 mar → 31, 62 y 90 días) |
 | **Datos de terreno** | Fotos, pH con tiras (1:2,5), temperatura del suelo opcional (termómetro metálico a 8 cm o infrarrojo en superficie), textura al tacto (clave de Thien), humedad al tacto, hábitat, riego y GPS |
-| **Temperatura** | Zona de calor de cada sitio según los mapas de [SantiagoHOT](https://www.santiagohot.cl) (fresca, intermedia o caliente), más días de ola de calor (DMC) |
+| **Temperatura** | Zona de calor de cada sitio según los mapas de [SantiagoHOT](https://www.santiagohot.cl) (cuartiles de la ciudad: Q1 fresca a Q4 caliente; rasters incluidos en `datos/santiagohot/`), más días de ola de calor (DMC) |
 | **Laboratorio** | Secado a 60 °C, pesaje, % de pérdida de masa y *k* exponencial |
 
 📄 **Protocolo completo:** [`protocolo/PROTOCOLO.md`](protocolo/PROTOCOLO.md)
@@ -22,7 +22,7 @@ docs/            Sitio web (GitHub Pages): inicio, tutoriales en español, formu
   config.js      ← URL del backend, fechas y contacto
 apps-script/     Backend gratuito: Google Apps Script → Google Sheets + Drive
 protocolo/       Protocolo detallado del piloto
-datos/           Plantilla de pesos iniciales (los datos personales NO se suben aquí)
+datos/           Plantilla de pesos iniciales y rasters de temperatura de SantiagoHOT (los datos personales NO se suben aquí)
 analisis/        Script R: pérdida de masa, k y exportación de datos públicos
 ```
 
