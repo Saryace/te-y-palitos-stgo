@@ -1,10 +1,10 @@
 /**
- * Té Bajo Tierra Santiago: receptor de registros.
+ * Té y Palitos Santiago: receptor de registros.
  * Guarda cada visita como una fila en la hoja "registros" y las fotos en una carpeta de Drive.
  * Instrucciones de despliegue: apps-script/README.md
  */
 
-const CARPETA_FOTOS = 'te-bajo-tierra-fotos';   // se crea si no existe
+const CARPETA_FOTOS = 'te-y-palitos-fotos';   // se crea si no existe
 const HOJA = 'registros';
 const COLUMNAS = [
   'recibido', 'id', 'participante', 'sitio', 'email', 'comuna', 'lat', 'lon', 'gps_precision',
@@ -43,7 +43,7 @@ function doPost(e) {
 }
 
 function doGet() {
-  return json_({ ok: true, servicio: 'te-bajo-tierra', mensaje: 'Usa POST para enviar registros.' });
+  return json_({ ok: true, servicio: 'te-y-palitos', mensaje: 'Usa POST para enviar registros.' });
 }
 
 function obtenerHoja_() {

@@ -1,4 +1,4 @@
-# 🍵 Té Bajo Tierra Santiago
+# 🍵🪵 Té y Palitos Santiago
 
 **Piloto de ciencia ciudadana: descomposición de materia orgánica en suelos urbanos de Santiago de Chile**
 21 de diciembre de 2026 → 21 de marzo de 2027 · un retiro por mes · estudiantes con curso de Ciencia del Suelo que viven en el Gran Santiago
@@ -28,7 +28,7 @@ analisis/        Script R: pérdida de masa, k y exportación de datos públicos
 ## Puesta en marcha
 
 1. **Backend:** seguir [`apps-script/README.md`](apps-script/README.md) y pegar la URL `/exec` en `docs/config.js`.
-2. **Web:** en GitHub, *Settings → Pages → Deploy from a branch → `main` / `docs`*. El sitio queda en `https://USUARIO.github.io/te-bajo-tierra-stgo/`.
+2. **Web:** en GitHub, *Settings → Pages → Deploy from a branch → `main` / `docs`*. El sitio queda en `https://USUARIO.github.io/te-y-palitos-stgo/`.
 3. Editar `REPO` y `CONTACTO` en `docs/config.js`.
 4. Probar localmente:
    ```bash

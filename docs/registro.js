@@ -130,7 +130,7 @@
     $("descargar").onclick = () => {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(new Blob([JSON.stringify(cola, null, 1)], { type: "application/json" }));
-      a.download = `te-bajo-tierra-pendientes-${Date.now()}.json`;
+      a.download = `te-y-palitos-pendientes-${Date.now()}.json`;
       a.click();
     };
   }

@@ -1,4 +1,4 @@
-# Protocolo piloto — Té Bajo Tierra Santiago
+# Protocolo piloto — Té y Palitos Santiago
 
 **Ciencia ciudadana sobre descomposición de materia orgánica en suelos urbanos de Santiago**
 Piloto de verano: **21 de diciembre de 2026 → 21 de marzo de 2027** (solsticio a equinoccio, 90 días)

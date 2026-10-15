@@ -1,4 +1,4 @@
-# Té Bajo Tierra Santiago — análisis del piloto
+# Té y Palitos Santiago — análisis del piloto
 # Entradas:
 #   datos/pesos_iniciales.csv  (coordinación, antes de instalar)
 #   datos/pesos_finales.csv    (coordinación, tras secar a 60 °C 48 h; mismas columnas + mt_g)
