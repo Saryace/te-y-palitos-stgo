@@ -9,7 +9,7 @@ Este piloto adapta el diseño de [Kotze & Setälä (2021, *Urban Ecosystems*)](h
 |---|---|
 | **Materiales** | 2 bolsas piramidales de té verde y 2 palitos de madera por estación |
 | **Diseño** | 3 estaciones por sitio, enterradas a 8 cm el 21 de diciembre; se retira **una por mes** (21 ene, 21 feb y 21 mar → 31, 62 y 90 días) |
-| **Datos de terreno** | Fotos, pH con tiras (1:2,5), textura al tacto (clave de Thien), humedad al tacto, hábitat, riego y GPS |
+| **Datos de terreno** | Fotos, pH con tiras (1:2,5), temperatura del suelo opcional (punzón a 8 cm o infrarrojo en superficie), textura al tacto (clave de Thien), humedad al tacto, hábitat, riego y GPS |
 | **Laboratorio** | Secado a 60 °C, pesaje, % de pérdida de masa y *k* exponencial |
 
 📄 **Protocolo completo:** [`protocolo/PROTOCOLO.md`](protocolo/PROTOCOLO.md)
@@ -48,6 +48,10 @@ analisis/        Script R: pérdida de masa, k y exportación de datos públicos
 Las coordenadas exactas, los correos y las fotos quedan en la planilla y el Drive privados de la coordinación. El repositorio solo publica datos agregados o redondeados (≈100 m), que se generan con `analisis/analisis_piloto.R`. **No subas `datos/registros.csv` ni fotos al repositorio** (ya está en `.gitignore`).
 
 ## Agradecimientos
+
+Este piloto es financiado por el proyecto **Fondecyt de Iniciación 2026** de Sara Acevedo (ANID).
+
+Agradecemos de antemano a todas y todos los participantes: sin su tiempo, sus jardines y sus visitas bajo el sol de verano, este proyecto no sería posible. 🍵🪵
 
 Gracias a [Soil BON](https://geobon.org/bons/thematic-bon/soil-bon/) (Soil Biodiversity Observation Network) por la inspiración.
 

@@ -9,7 +9,7 @@ const HOJA = 'registros';
 const COLUMNAS = [
   'recibido', 'id', 'participante', 'sitio', 'email', 'comuna', 'lat', 'lon', 'gps_precision',
   'visita', 'fecha', 'habitat', 'riego', 'riego_24h', 'cobertura', 'sombra', 'fuente_sombra', 'especie_arbol', 'descripcion',
-  'temp_suelo', 'temp_aire', 'ph', 'ph_marca', 'humedad', 'textura', 'cinta_cm', 'sensacion',
+  'temp_suelo', 'metodo_temp', 'temp_aire', 'ph', 'ph_marca', 'humedad', 'textura', 'cinta_cm', 'sensacion',
   'estado_verde', 'estado_madera', 'en_sobre', 'obs',
   'fotos_sitio', 'fotos_ph', 'fotos_material', 'fotos_cielo', 'enviado_desde',
 ];

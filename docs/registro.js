@@ -47,6 +47,10 @@
   // ---------- mostrar/ocultar secciones ----------
   const visita = () => (form.querySelector("input[name=visita]:checked") || {}).value;
   function actualizarSecciones() {
+    const temp = $("temp_suelo").value;
+    const metodo = form.querySelector("input[name=metodo_temp]:checked");
+    if (temp && !metodo) e.push("Indica qué termómetro usaste para la temperatura del suelo.");
+    if (!temp && metodo) e.push("Marcaste un termómetro, pero falta la temperatura del suelo.");
     const v = visita();
     const esRetiro = v && v !== "T0";
     const pideTextura = v === "T0" || v === "R3";
@@ -164,6 +168,10 @@
     }
     if (!fotos.foto_sitio.length) e.push("Falta la foto del sitio.");
     if (!fotos.foto_ph.length) e.push("Falta la foto de la tira de pH.");
+    const temp = $("temp_suelo").value;
+    const metodo = form.querySelector("input[name=metodo_temp]:checked");
+    if (temp && !metodo) e.push("Indica qué termómetro usaste para la temperatura del suelo.");
+    if (!temp && metodo) e.push("Marcaste un termómetro, pero falta la temperatura del suelo.");
     const v = visita();
     if (v && v !== "T0" && (!$("estado_verde").value || !$("estado_madera").value)) e.push("Indica el estado del material retirado.");
     return e;

@@ -78,7 +78,7 @@ Los autores lo atribuyen a una comunidad pobre de hongos saprófitos en la ciuda
 | Tiras de pH (rango 4–9 o 0–14, paso ≤ 0,5) | 8 | Igual marca para todos |
 | Agua destilada (frasco 250 mL) | 1 | Para pH y textura |
 | Frasco con tapa (vaso de muestra 50–100 mL) | 1 | Suspensión suelo:agua para pH |
-| **Termómetro digital de punzón** (tipo cocina, ±1 °C) | 1 | Temperatura del suelo a 8 cm en cada visita |
+| *Opcional:* termómetro digital de **punzón tipo cocina** (±1 °C) o **infrarrojo** | 1 | Temperatura del suelo: a 8 cm con punzón o en la superficie con infrarrojo. Lo aporta el estudiante si tiene uno, o la coordinación según disponibilidad |
 
 **Opcional (submuestra de ~6 sitios, uno por hábitat):** un registrador de temperatura (tipo iButton o HOBO) enterrado a 8 cm junto a la estación R3, programado cada 1 h. Así se mide cuánto se calienta el suelo durante las olas de calor.
 
@@ -124,7 +124,7 @@ Se enviarán **recordatorios** por correo o WhatsApp 3 días antes de cada fecha
 4. Poner **2 bolsas de té verde** a 8 cm, separadas por ~5 cm, con la **etiqueta fuera del suelo** para encontrarlas después. Poner **2 palitos de madera** horizontales a la misma profundidad, al lado de las bolsas.
 5. Tapar con el mismo suelo, apisonar suavemente y clavar el banderín de la estación.
 6. **Foto del sitio**: una general a 2 m y una cenital de las estaciones con el banderín visible.
-7. Hacer **pH** y **textura** con suelo del hoyo, a 0–10 cm (ver 5.3 y 5.4), y medir la **temperatura del suelo** (5.6).
+7. Hacer **pH** y **textura** con suelo del hoyo, a 0–10 cm (ver 5.3 y 5.4), y, si hay termómetro, medir la **temperatura del suelo** (5.6).
 8. **Registrar en la web**: tipo de visita *Instalación*, GPS, hábitat, riego, pH, textura, temperatura y fotos.
    - **Sombra a mediodía** en 4 clases: pleno sol (0–25 %), sombra parcial (25–50 %), media sombra (50–75 %) y sombra densa (> 75 %). También se registra qué la produce (árbol, arbusto, edificio o muro, malla) y la especie del árbol si se conoce. Opcional: una foto hacia el cielo desde el suelo para estimar la cobertura de copas.
    - **Descripción del sitio**: entorno en 2 m, uso y pisoteo, manejo, pendiente, distancia a pavimento, tipo de riego y superficie del suelo. El formulario ofrece botones para agregar cada tema. En los retiros se describen solo los cambios.
@@ -137,7 +137,7 @@ Se enviarán **recordatorios** por correo o WhatsApp 3 días antes de cada fecha
 3. Retirar los restos de suelo y raíces **sin lavar** y sin abrir la bolsa.
 4. Poner las 2 bolsas y los 2 palitos en el **sobre rotulado** y dejarlo secar al aire en un lugar sombreado. **No usar bolsas plásticas**, porque generan hongos.
 5. **Fotos**: sitio, hoyo abierto y material recuperado sobre un papel blanco.
-6. Antes de desenterrar, medir la **temperatura del suelo** (5.6). Después, hacer el **pH** con suelo de la estación retirada y evaluar la **humedad al tacto**.
+6. Antes de desenterrar, medir la **temperatura del suelo** si hay termómetro (5.6). Después, hacer el **pH** con suelo de la estación retirada y evaluar la **humedad al tacto**.
 7. En R3, repetir la **textura**.
 8. **Registrar en la web**: tipo de visita *Retiro 1/2/3* y el estado del material (intacto, roto, con raíces o no encontrado).
 9. Guardar el sobre en un lugar fresco y seco (no dentro de un auto al sol) hasta la entrega de fines de marzo, o entregarlo antes en el punto de acopio.
@@ -166,11 +166,16 @@ Registrar la **clase textural**, el **largo de la cinta (cm)** y la sensación.
 | Húmedo | Forma bola, deja la mano algo húmeda |
 | Saturado | Escurre agua al apretar |
 
-### 5.6 Temperatura del suelo
+### 5.6 Temperatura del suelo (opcional)
 
-1. Medir **antes de cavar**, a 10 cm de la estación que se retira o, en la instalación, de la R1.
-2. Introducir el punzón hasta **8 cm**, la profundidad de los materiales, a la sombra del propio cuerpo.
-3. Esperar a que la lectura se estabilice (~1 min) y anotar el valor en °C. La hora queda registrada en el formulario.
+Es opcional y depende de que el estudiante tenga termómetro. Se mide **antes de cavar**, a 10 cm de la estación que se retira (en la instalación, de la R1). En el formulario se indica el método, porque los dos miden cosas distintas:
+
+| Método | Cómo | Qué mide |
+|---|---|---|
+| **Punzón tipo cocina** | Introducir hasta **8 cm**, a la sombra del propio cuerpo; esperar ~1 min a que se estabilice | Temperatura en la zona de los materiales |
+| **Infrarrojo** | Apuntar en perpendicular a la superficie, a 15–30 cm, sin mover pasto ni hojarasca; emisividad 0,95 si es ajustable | Temperatura de la superficie (puede superar 50–60 °C a pleno sol) |
+
+Anotar el valor en °C. La hora queda registrada en el formulario. En el análisis, cada método se trata por separado.
 
 ### 5.7 Calor extremo: seguridad y registro
 
@@ -183,7 +188,7 @@ El verano en Santiago trae **olas de calor**: según la Dirección Meteorológic
 - Si alguien se siente mal (mareo, dolor de cabeza, náuseas): suspender, buscar sombra e hidratarse. Ningún dato vale más que eso.
 
 **Registro:**
-- En el formulario: **temperatura del suelo**, y si el sitio se **regó en las últimas 24 h** (durante las olas de calor cambian los horarios de riego y puede haber restricciones).
+- En el formulario: **temperatura del suelo** (si hay termómetro) y si el sitio se **regó en las últimas 24 h** (durante las olas de calor cambian los horarios de riego y puede haber restricciones).
 - Anotar en *Observaciones* si se ve el suelo agrietado o el pasto quemado, o si hubo corte o restricción de riego.
 - La coordinación calcula los **días de ola de calor** de cada incubación con los datos diarios de la DMC, desde la estación más cercana a cada sitio (p. ej. Quinta Normal, Pudahuel o Tobalaba). Ver el visor de olas de calor de la DMC: https://climatologia.meteochile.gob.cl/application/index/visorOlas
 
@@ -197,7 +202,7 @@ El verano en Santiago trae **olas de calor**: según la Dirección Meteorológic
 4. Calcular:
    - **Pérdida de masa (%)** = (M0 − Mt) / M0 × 100, corregida con los controles de manipulación.
    - ***k*** por sitio, ajustando *ln(Mt/M0) = −k·t* con los 3 retiros, por separado para el té y la madera.
-5. Modelos: pérdida de masa ~ material × hábitat + riego + días de ola de calor + temperatura del suelo + pH + textura, con el sitio como efecto aleatorio. Interacción riego × días de ola de calor para probar H5. Ver `analisis/analisis_piloto.R`.
+5. Modelos: pérdida de masa ~ material × hábitat + riego + días de ola de calor + pH + textura, con el sitio como efecto aleatorio. Interacción riego × días de ola de calor para probar H5. Ver `analisis/analisis_piloto.R`.
 
 ---
 
@@ -226,6 +231,10 @@ Si se cumplen, se propone escalar a **un año completo**, dejar palitos enterrad
 ---
 
 ## Agradecimientos
+
+Este piloto es financiado por el proyecto **Fondecyt de Iniciación 2026** de Sara Acevedo (ANID).
+
+Agradecemos de antemano a todas y todos los participantes: sin su tiempo, sus jardines y sus visitas bajo el sol de verano, este proyecto no sería posible. 🍵🪵
 
 Gracias a [Soil BON](https://geobon.org/bons/thematic-bon/soil-bon/) (Soil Biodiversity Observation Network) por la inspiración.
 

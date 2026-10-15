@@ -143,10 +143,16 @@
       </div>
 
       <div class="row">
-        <div><label for="temp_suelo">Temperatura del suelo a 8 cm (°C) <span class="hint">Mídela antes de cavar. <a href="tutoriales.html#temperatura">¿Cómo?</a></span></label>
-          <input id="temp_suelo" name="temp_suelo" type="number" min="0" max="70" step="0.5" required inputmode="decimal"></div>
+        <div><label for="temp_suelo">Temperatura del suelo (°C) <span class="hint">Opcional, si tienes termómetro. Mídela antes de cavar. <a href="tutoriales.html#temperatura">¿Cómo?</a></span></label>
+          <input id="temp_suelo" name="temp_suelo" type="number" min="0" max="80" step="0.5" inputmode="decimal"></div>
         <div><label for="temp_aire">Temperatura del aire (°C) <span class="hint">Opcional: la de tu app del tiempo</span></label>
           <input id="temp_aire" name="temp_aire" type="number" min="-5" max="50" step="0.5" inputmode="decimal"></div>
+      </div>
+
+      <label>Termómetro usado <span class="hint">Solo si registraste la temperatura del suelo.</span></label>
+      <div class="choices">
+        <label><input type="radio" name="metodo_temp" value="punzon 8 cm"> 🍖 Punzón tipo cocina, a 8 cm</label>
+        <label><input type="radio" name="metodo_temp" value="infrarrojo superficie"> 🔴 Infrarrojo, en la superficie</label>
       </div>
 
       <label>Humedad al tacto</label>
@@ -213,6 +219,7 @@
     <div id="estado"></div>
     <button class="btn" type="submit" id="enviar">Enviar registro</button>
   </form>
+  <p class="hint">Este piloto es financiado por el proyecto <strong>Fondecyt de Iniciación 2026</strong> de Sara Acevedo (ANID). Agradecemos de antemano a todas y todos los participantes, que hacen posible esta ciencia ciudadana.</p>
 </main>
 
 <footer>Té y Palitos Santiago · ¿Problemas con el formulario? Escribe a la coordinación.</footer>

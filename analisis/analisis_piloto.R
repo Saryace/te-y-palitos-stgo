@@ -87,6 +87,7 @@ k_sitio <- masa |>
     .groups = "drop"
   )
 
+for (col in c("temp_suelo", "metodo_temp")) if (!col %in% names(reg)) reg[[col]] <- NA
 # Covariables de sitio: hábitat (instalación), riego modal, pH medio y textura
 cov <- reg |>
   group_by(sitio) |>
@@ -95,7 +96,9 @@ cov <- reg |>
     comuna = first(comuna),
     riego = names(which.max(table(riego))),
     ph_medio = mean(ph, na.rm = TRUE),
-    temp_suelo_media = mean(temp_suelo, na.rm = TRUE),
+    # Temperatura opcional: punzón (8 cm) e infrarrojo (superficie) miden cosas distintas
+    temp_8cm_media = mean(temp_suelo[metodo_temp %in% "punzon 8 cm"], na.rm = TRUE),
+    temp_sup_media = mean(temp_suelo[metodo_temp %in% "infrarrojo superficie"], na.rm = TRUE),
     sombra = first(sombra),
     textura = first(na.omit(textura)),
     .groups = "drop"
