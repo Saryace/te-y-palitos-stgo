@@ -29,7 +29,7 @@ analisis/        Script R: pérdida de masa, k y exportación de datos públicos
 ## Puesta en marcha
 
 1. **Backend:** seguir [`apps-script/README.md`](apps-script/README.md) y pegar la URL `/exec` en `docs/config.js`.
-2. **Web:** en GitHub, *Settings → Pages → Deploy from a branch → `main` / `docs`*. El sitio queda en `https://USUARIO.github.io/te-y-palitos-stgo/`.
+2. **Web:** en GitHub, *Settings → Pages → Deploy from a branch → `main` / `docs`*. El sitio queda en `https://saryace.github.io/te-y-palitos-stgo/`.
 3. Editar `REPO` y `CONTACTO` en `docs/config.js`.
 4. Probar localmente:
    ```bash
