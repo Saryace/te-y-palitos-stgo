@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tutoriales</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">🍵🪵 Té y Palitos Santiago</a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tutoriales.html" aria-current="page">Tutoriales</a>
+    <a href="registro.html">Registrar visita</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Tutoriales</h1>
+  <p class="lead">Repaso rápido de lo que viste en Edafología. Revisa todo antes de la capacitación y vuelve aquí desde el terreno si tienes dudas.</p>
+  <p>
+    <a href="#instalar">1 · Instalar y retirar</a> ·
+    <a href="#ph">2 · pH con tiras</a> ·
+    <a href="#textura">3 · Textura al tacto</a> ·
+    <a href="#humedad">4 · Humedad</a>
+  </p>
+
+  <!-- 1 -->
+  <h2 id="instalar">1 · Instalar y retirar las estaciones</h2>
+  <div class="card">
+    <strong>Instalación (21 dic)</strong>
+    <ol>
+      <li>Marca 3 estaciones en línea, separadas por <strong>30 cm</strong>: R1, R2 y R3.</li>
+      <li>En cada una, cava un hoyo de <strong>8 cm</strong> de profundidad.</li>
+      <li>Pon <strong>1 té verde + 1 rooibos</strong> con la etiqueta <strong>fuera del suelo</strong>, y <strong>2 palitos</strong> horizontales a la misma profundidad.</li>
+      <li>Tapa con el mismo suelo, apisona suavemente y clava el banderín.</li>
+      <li>Toma fotos: una general a 2 m y una desde arriba con los banderines visibles.</li>
+    </ol>
+    <strong>Retiro (21 ene → R1 · 21 feb → R2 · 21 mar → R3)</strong>
+    <ol>
+      <li>Desentierra con los dedos, <strong>sin tirar de la etiqueta</strong>.</li>
+      <li>Quita el suelo suelto, <strong>sin lavar</strong>, y guarda todo en el <strong>sobre de papel</strong> rotulado. Nunca en bolsa plástica.</li>
+      <li>Deja el sobre secando a la sombra y guárdalo hasta la entrega.</li>
+      <li>Saca una foto del material sobre un papel blanco.</li>
+    </ol>
+    <p class="hint">El método de las bolsitas es el Tea Bag Index (Keuskamp et al. 2013). En su sitio oficial hay material en inglés: <a href="https://www.teatime4science.org/">teatime4science.org</a>.</p>
+  </div>
+
+  <!-- 2 -->
+  <h2 id="ph">2 · pH del suelo con tiras reactivas</h2>
+  <div class="card">
+    <iframe class="video" loading="lazy" src="https://www.youtube-nocookie.com/embed/5i-kwoofDHA" title="Cómo medir el pH del suelo — Carlos Merchán A&amp;T" allowfullscreen></iframe>
+    <p class="hint">Video: <em>Cómo medir el pH del suelo</em>, de Carlos Merchán A&amp;T. Muestra la idea general. En el piloto usamos <strong>siempre</strong> la proporción estandarizada de abajo.</p>
+    <ol>
+      <li>Toma suelo de 0–10 cm, quita piedras y raíces, y desmenúzalo.</li>
+      <li>Pon <strong>10 g de suelo</strong> (≈2 cucharaditas rasas) y <strong>25 mL de agua destilada</strong> en el frasco. La relación es <strong>1:2,5</strong>.</li>
+      <li>Agita 1 minuto y deja reposar <strong>30 minutos</strong>. A los 15 minutos, agita otra vez.</li>
+      <li>Moja la tira <strong>solo en el líquido de arriba</strong>, sin tocar el barro.</li>
+      <li>Compara con la escala <strong>a la sombra</strong> y anota el valor más cercano (paso 0,5).</li>
+      <li>📷 Toma una foto de la tira <strong>junto a la escala</strong>. La usamos para verificar la lectura.</li>
+    </ol>
+    <p class="hint">Recuerda: los suelos de Santiago suelen ser neutros a alcalinos (pH ≈ 7–8,5). Si lees menos de 5, revisa que el agua sea destilada y no de la llave.</p>
+  </div>
+
+  <!-- 3 -->
+  <h2 id="textura">3 · Textura al tacto</h2>
+  <div class="card">
+    <iframe class="video" loading="lazy" src="https://www.youtube-nocookie.com/embed/Jgjr1_GKQdc" title="Cómo determinar la Textura de un suelo al tacto — UPV" allowfullscreen></iframe>
+    <p class="hint">Video: <em>Cómo determinar la textura de un suelo al tacto</em>, de la Universitat Politècnica de València. Otro ejemplo: <a href="https://www.youtube.com/watch?v=V4uSq6lH5TM">Determinación de la textura al tacto (UPV)</a>.</p>
+  </div>
+
+  <div class="card" id="clave">
+    <strong>🔎 Clave interactiva (Thien, 1979)</strong>
+    <p class="hint">Toma ~25 g de suelo, sin piedras, y agrega agua de a poco amasando hasta que tenga consistencia de plasticina húmeda.</p>
+    <div id="key-box" class="key-step" aria-live="polite"></div>
+    <div id="key-actions" class="key-actions"></div>
+  </div>
+
+  <!-- 4 -->
+  <h2 id="humedad">4 · Humedad al tacto</h2>
+  <div class="card table-scroll">
+    <table>
+      <tr><th>Clase</th><th>Al apretar un puñado…</th></tr>
+      <tr><td>Seco</td><td>Polvoriento, no se mantiene unido</td></tr>
+      <tr><td>Ligeramente húmedo</td><td>Se une un poco, no deja humedad en la mano</td></tr>
+      <tr><td>Húmedo</td><td>Forma bola y deja la mano algo húmeda</td></tr>
+      <tr><td>Saturado</td><td>Escurre agua</td></tr>
+    </table>
+  </div>
+
+  <p><a class="btn" href="registro.html">Ir a registrar visita</a></p>
+</main>
+
+<footer>Té y Palitos Santiago · los videos son de sus respectivos autores, enlazados desde YouTube</footer>
+
+<script>
+  // Clave de textura al tacto, adaptada de Thien (1979)
+  const PASOS = {
+    inicio: { q: "Aprieta el suelo húmedo en la mano. ¿Se mantiene como <strong>bola</strong>?",
+              a: [["Sí", "cinta"], ["No", "=Arenosa"]] },
+    cinta:  { q: "Pon la bola entre el pulgar y el índice y empuja hacia arriba para formar una <strong>cinta</strong>. ¿Se forma una cinta?",
+              a: [["Sí", "largo"], ["No", "=Arenosa franca"]] },
+    largo:  { q: "Deja que la cinta crezca hasta que se quiebre por su propio peso. ¿Qué <strong>largo</strong> alcanzó?",
+              a: [["< 2,5 cm (débil)", "f1"], ["2,5 – 5 cm (media)", "f2"], ["> 5 cm (fuerte)", "f3"]] },
+    f1: { q: "Moja mucho una pizca en la palma y frótala con el índice. ¿Qué sensación <strong>predomina</strong>?",
+          a: [["Muy arenosa (áspera)", "=Franco arenosa"], ["Muy suave (sedosa)", "=Franco limosa"], ["Ninguna predomina", "=Franca"]] },
+    f2: { q: "Moja mucho una pizca en la palma y frótala con el índice. ¿Qué sensación <strong>predomina</strong>?",
+          a: [["Muy arenosa (áspera)", "=Franco arcillo arenosa"], ["Muy suave (sedosa)", "=Franco arcillo limosa"], ["Ninguna predomina", "=Franco arcillosa"]] },
+    f3: { q: "Moja mucho una pizca en la palma y frótala con el índice. ¿Qué sensación <strong>predomina</strong>?",
+          a: [["Muy arenosa (áspera)", "=Arcillo arenosa"], ["Muy suave (sedosa)", "=Arcillo limosa"], ["Ninguna predomina", "=Arcillosa"]] },
+  };
+  const box = document.getElementById("key-box");
+  const acts = document.getElementById("key-actions");
+  function boton(txt, fn, sec) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "btn" + (sec ? " secondary" : ""); b.innerHTML = txt; b.onclick = fn;
+    acts.appendChild(b);
+  }
+  function ir(paso) {
+    acts.innerHTML = "";
+    if (paso.startsWith("=")) {
+      const clase = paso.slice(1);
+      box.innerHTML = `Clase textural: <div class="key-result">${clase}</div><span class="hint">Anótala en el formulario junto con el largo de la cinta.</span>`;
+      boton("Empezar de nuevo", () => ir("inicio"), true);
+      return;
+    }
+    const p = PASOS[paso];
+    box.innerHTML = p.q;
+    p.a.forEach(([txt, sig]) => boton(txt, () => ir(sig)));
+    if (paso !== "inicio") boton("↺ Reiniciar", () => ir("inicio"), true);
+  }
+  ir("inicio");
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+sitio,retiro,material,codigo,m0_g,fecha_pesaje,obs
+P00-Z,R1,verde,P00-Z-R1-V,,,
+P00-Z,R1,rooibos,P00-Z-R1-R,,,
+P00-Z,R1,madera,P00-Z-R1-M1,,,
+P00-Z,R1,madera,P00-Z-R1-M2,,,
+CONTROL,C,verde,CTRL-V1,,,control de manipulación

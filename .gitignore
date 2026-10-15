@@ -1,0 +1,6 @@
+datos/registros.csv
+datos/pesos_finales.csv
+datos/fotos/
+*.jpg
+.DS_Store
+.Rhistory

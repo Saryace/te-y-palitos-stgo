@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar visita</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍵</text></svg>">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">🍵🪵 Té y Palitos Santiago</a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tutoriales.html">Tutoriales</a>
+    <a href="registro.html" aria-current="page">Registrar visita</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Registrar visita</h1>
+  <p class="lead">Llena este formulario <strong>en el sitio</strong>, justo después de cada visita. Tus códigos y el sitio quedan guardados en este celular para la próxima vez.</p>
+  <div id="pendientes"></div>
+
+  <form id="form" novalidate>
+    <fieldset>
+      <legend>1 · Quién y dónde</legend>
+      <div class="row">
+        <div><label for="participante">Código de participante <span class="hint">Ej.: P07</span></label>
+          <input id="participante" name="participante" type="text" required pattern="[Pp]\d{2}" autocapitalize="characters" placeholder="P07"></div>
+        <div><label for="sitio">Código de sitio <span class="hint">Ej.: P07-A</span></label>
+          <input id="sitio" name="sitio" type="text" required pattern="[Pp]\d{2}-[A-Za-z]" autocapitalize="characters" placeholder="P07-A"></div>
+      </div>
+      <label for="email">Correo <span class="hint">Solo para contactarte si falta un dato; no se publica.</span></label>
+      <input id="email" name="email" type="email" autocomplete="email">
+
+      <label for="comuna">Comuna</label>
+      <select id="comuna" name="comuna" required><option value="">Selecciona…</option></select>
+
+      <label>Ubicación GPS <span class="hint">Párate junto a las estaciones. Las coordenadas exactas solo las ve la coordinación.</span></label>
+      <div class="row">
+        <input id="lat" name="lat" type="number" step="any" placeholder="Latitud" required>
+        <input id="lon" name="lon" type="number" step="any" placeholder="Longitud" required>
+      </div>
+      <p><button type="button" class="btn secondary" id="gps">📍 Usar mi ubicación</button> <span class="hint" id="gps-msg"></span></p>
+      <input type="hidden" id="gps_precision" name="gps_precision">
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Visita</legend>
+      <label>Tipo de visita</label>
+      <div class="choices" id="visita-choices"></div>
+      <label for="fecha">Fecha y hora</label>
+      <input id="fecha" name="fecha" type="datetime-local" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Sitio</legend>
+      <label for="habitat">Hábitat</label>
+      <select id="habitat" name="habitat" required>
+        <option value="">Selecciona…</option>
+        <option value="CES">Césped regado (plaza, parque, jardín)</option>
+        <option value="ARB">Bajo dosel de árboles (parque arbolado)</option>
+        <option value="RUD">Sitio eriazo / ruderal sin riego</option>
+        <option value="PLA">Platabanda o bandejón</option>
+        <option value="JAR">Jardín doméstico o huerto</option>
+        <option value="NAT">Vegetación nativa remanente (cerro, piedemonte)</option>
+      </select>
+
+      <label>Riego en la última semana</label>
+      <div class="choices">
+        <label><input type="radio" name="riego" value="diario" required> Diario</label>
+        <label><input type="radio" name="riego" value="2-3 por semana"> 2–3 veces</label>
+        <label><input type="radio" name="riego" value="1 por semana"> 1 vez</label>
+        <label><input type="radio" name="riego" value="sin riego"> Sin riego</label>
+        <label><input type="radio" name="riego" value="no sabe"> No sé</label>
+      </div>
+
+      <label>Cobertura del suelo sobre las estaciones</label>
+      <div class="choices">
+        <label><input type="radio" name="cobertura" value="pasto" required> Pasto</label>
+        <label><input type="radio" name="cobertura" value="hojarasca"> Hojarasca</label>
+        <label><input type="radio" name="cobertura" value="mulch"> Mulch/corteza</label>
+        <label><input type="radio" name="cobertura" value="hierbas espontaneas"> Hierbas espontáneas</label>
+        <label><input type="radio" name="cobertura" value="suelo desnudo"> Suelo desnudo</label>
+      </div>
+
+      <label>Sombra a mediodía</label>
+      <div class="choices">
+        <label><input type="radio" name="sombra" value="pleno sol" required> Pleno sol</label>
+        <label><input type="radio" name="sombra" value="media sombra"> Media sombra</label>
+        <label><input type="radio" name="sombra" value="sombra"> Sombra</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Suelo (0–10 cm)</legend>
+      <div class="row">
+        <div><label for="ph">pH (tira) <span class="hint">Suspensión 1:2,5, 30 min. <a href="tutoriales.html#ph">¿Cómo?</a></span></label>
+          <input id="ph" name="ph" type="number" min="3" max="11" step="0.5" required inputmode="decimal"></div>
+        <div><label for="ph_marca">Marca de las tiras</label>
+          <input id="ph_marca" name="ph_marca" type="text" placeholder="La del kit"></div>
+      </div>
+
+      <label>Humedad al tacto</label>
+      <div class="choices">
+        <label><input type="radio" name="humedad" value="seco" required> Seco</label>
+        <label><input type="radio" name="humedad" value="ligeramente humedo"> Ligeramente húmedo</label>
+        <label><input type="radio" name="humedad" value="humedo"> Húmedo</label>
+        <label><input type="radio" name="humedad" value="saturado"> Saturado</label>
+      </div>
+
+      <div class="only-textura">
+        <label for="textura">Clase textural al tacto <span class="hint">Obligatoria en Instalación y Retiro 3. <a href="tutoriales.html#textura">Usar la clave interactiva</a></span></label>
+        <select id="textura" name="textura">
+          <option value="">Selecciona…</option>
+          <option>Arenosa</option><option>Arenosa franca</option><option>Franco arenosa</option>
+          <option>Franca</option><option>Franco limosa</option><option>Limosa</option>
+          <option>Franco arcillo arenosa</option><option>Franco arcillosa</option><option>Franco arcillo limosa</option>
+          <option>Arcillo arenosa</option><option>Arcillo limosa</option><option>Arcillosa</option>
+        </select>
+        <div class="row">
+          <div><label for="cinta_cm">Largo de la cinta (cm)</label>
+            <input id="cinta_cm" name="cinta_cm" type="number" min="0" max="15" step="0.5" inputmode="decimal"></div>
+          <div><label for="sensacion">Sensación al frotar</label>
+            <select id="sensacion" name="sensacion"><option value="">—</option><option>Arenosa (áspera)</option><option>Suave (sedosa)</option><option>Ninguna predomina</option></select></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="only-retiro">
+      <legend>5 · Material retirado</legend>
+      <div class="row">
+        <div><label for="estado_verde">Té verde</label><select id="estado_verde" name="estado_verde"></select></div>
+        <div><label for="estado_rooibos">Rooibos</label><select id="estado_rooibos" name="estado_rooibos"></select></div>
+        <div><label for="estado_madera">Palitos (2)</label><select id="estado_madera" name="estado_madera"></select></div>
+      </div>
+      <div class="choices" style="margin-top:1rem"><label><input type="checkbox" name="en_sobre" value="si"> Guardé todo en el sobre rotulado, sin lavar</label></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>6 · Fotos</legend>
+      <label for="foto_sitio">Foto del sitio (general y estaciones) <span class="hint">Obligatoria</span></label>
+      <input id="foto_sitio" type="file" accept="image/*" capture="environment" multiple>
+      <div class="preview" id="prev_foto_sitio"></div>
+
+      <label for="foto_ph">Tira de pH junto a la escala de colores <span class="hint">Obligatoria</span></label>
+      <input id="foto_ph" type="file" accept="image/*" capture="environment">
+      <div class="preview" id="prev_foto_ph"></div>
+
+      <div class="only-retiro">
+        <label for="foto_material">Material retirado sobre papel blanco</label>
+        <input id="foto_material" type="file" accept="image/*" capture="environment" multiple>
+        <div class="preview" id="prev_foto_material"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>7 · Observaciones</legend>
+      <textarea id="obs" name="obs" rows="3" placeholder="Lombrices, hormigas, raíces dentro de la bolsa, estación removida, corte de pasto reciente…"></textarea>
+    </fieldset>
+
+    <div id="estado"></div>
+    <button class="btn" type="submit" id="enviar">Enviar registro</button>
+  </form>
+</main>
+
+<footer>Té y Palitos Santiago · ¿Problemas con el formulario? Escribe a la coordinación.</footer>
+<script src="config.js"></script>
+<script src="registro.js"></script>
+</body>
+</html>
