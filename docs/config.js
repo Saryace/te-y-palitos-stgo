@@ -10,6 +10,6 @@ window.TYP_CONFIG = {
     { id: "R2", nombre: "Retiro 2", fecha: "2027-02-21" },
     { id: "R3", nombre: "Retiro 3", fecha: "2027-03-21" },
   ],
-  REPO: "https://github.com/USUARIO/te-y-palitos-stgo", // reemplazar tras crear el repo
+  REPO: "https://github.com/USUARIO/te-bajo-tierra-stgo", // reemplazar tras crear el repo
   CONTACTO: "coordinacion@ejemplo.cl", // reemplazar
 };

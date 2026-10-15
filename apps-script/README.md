@@ -2,7 +2,7 @@
 
 Los registros de la web se guardan en una planilla de Google de la coordinación. Las fotos quedan en una carpeta de Drive. Las y los participantes **no necesitan cuenta**.
 
-1. Crear una planilla nueva en Google Sheets (p. ej. *Té y Palitos — registros 2026-27*).
+1. Crear una planilla nueva en Google Sheets (p. ej. *Té Bajo Tierra — registros 2026-27*).
 2. *Extensiones → Apps Script*. Borrar el contenido y pegar [`Code.gs`](Code.gs). Guardar.
 3. *Implementar → Nueva implementación → tipo **Aplicación web***:
    - Ejecutar como: **Yo**

@@ -19,7 +19,7 @@
   COMUNAS.forEach((c) => sel.add(new Option(c, c)));
 
   const ESTADOS = ["", "Intacto", "Roto / rasgado", "Con raíces dentro", "Parcialmente encontrado", "No encontrado"];
-  ["estado_verde", "estado_rooibos", "estado_madera"].forEach((id) =>
+  ["estado_verde"].forEach((id) =>
     ESTADOS.forEach((e) => $(id).add(new Option(e || "Selecciona…", e))));
 
   // Tipo de visita: preselecciona la más cercana a hoy
@@ -120,7 +120,7 @@
     $("descargar").onclick = () => {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(new Blob([JSON.stringify(cola, null, 1)], { type: "application/json" }));
-      a.download = `te-y-palitos-pendientes-${Date.now()}.json`;
+      a.download = `te-bajo-tierra-pendientes-${Date.now()}.json`;
       a.click();
     };
   }

@@ -1,11 +1,11 @@
-# Té y Palitos Santiago — análisis del piloto
+# Té Bajo Tierra Santiago — análisis del piloto
 # Entradas:
 #   datos/pesos_iniciales.csv  (coordinación, antes de instalar)
 #   datos/pesos_finales.csv    (coordinación, tras secar a 60 °C 48 h; mismas columnas + mt_g)
 #   datos/registros.csv        (exportado de la planilla de Google, hoja "registros")
 # Salidas:
 #   datos/publicos/registros_publicos.csv (sin correo, coordenadas a 3 decimales)
-#   datos/publicos/descomposicion.csv     (pérdida de masa y k por sitio × material)
+#   datos/publicos/descomposicion.csv     (pérdida de masa y k por sitio)
 
 library(dplyr)
 library(readr)
@@ -21,16 +21,15 @@ reg <- read_csv("datos/registros.csv", show_col_types = FALSE)
 corr <- m0 |>
   filter(sitio == "CONTROL") |>
   inner_join(select(mt, codigo, mt_g), by = "codigo") |>
-  group_by(material) |>
-  summarise(f_manip = mean(mt_g / m0_g), .groups = "drop")
+  summarise(f_manip = mean(mt_g / m0_g)) |>
+  pull(f_manip)
+if (length(corr) == 0 || is.na(corr)) corr <- 1
 
 masa <- m0 |>
   filter(sitio != "CONTROL") |>
   inner_join(select(mt, codigo, mt_g), by = "codigo") |>
-  left_join(corr, by = "material") |>
   mutate(
-    f_manip = coalesce(f_manip, 1),
-    m0_corr = m0_g * f_manip,
+    m0_corr = m0_g * corr,
     perdida_pct = 100 * (m0_corr - mt_g) / m0_corr,
     t_dias = dias[retiro],
     ln_rest = log(mt_g / m0_corr)
@@ -38,7 +37,7 @@ masa <- m0 |>
 
 # k (día^-1) de un modelo exponencial simple ajustado por el origen: ln(Mt/M0) = -k t
 k_sitio <- masa |>
-  group_by(sitio, material) |>
+  group_by(sitio) |>
   summarise(
     n = n(),
     perdida_90d = mean(perdida_pct[retiro == "R3"]),
@@ -63,7 +62,7 @@ desc <- left_join(k_sitio, cov, by = "sitio")
 # Modelo exploratorio (con pocos sitios, interpretarlo con cautela)
 if (requireNamespace("lme4", quietly = TRUE) && n_distinct(masa$sitio) > 5) {
   datos_mod <- left_join(masa, cov, by = "sitio")
-  print(summary(lme4::lmer(perdida_pct ~ material * habitat + riego + ph_medio + t_dias + (1 | sitio),
+  print(summary(lme4::lmer(perdida_pct ~ habitat + riego + ph_medio + t_dias + (1 | sitio),
                            data = datos_mod)))
 }
 
