@@ -99,6 +99,11 @@ input[type=file] { font: inherit; max-width: 100%; }
 .choices { display: flex; flex-wrap: wrap; gap: .4rem; }
 .choices label { font-weight: 400; margin: 0; display: flex; align-items: center; gap: .35rem; background: var(--bg); border: 1px solid var(--border); padding: .4rem .7rem; border-radius: 99px; cursor: pointer; }
 .choices input { margin: 0; }
+.choices.stacked { flex-direction: column; }
+.choices.stacked label { border-radius: 10px; align-items: flex-start; padding: .6rem .8rem; }
+.choices.stacked input { margin-top: .3rem; }
+.chip { font: inherit; font-size: .88rem; cursor: pointer; color: var(--text); background: var(--bg); border: 1px dashed var(--border); padding: .35rem .7rem; border-radius: 99px; }
+.chip:hover { border-color: var(--accent); background: var(--accent-soft); }
 .choices label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
 .preview { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .4rem; }
 .preview img { width: 96px; height: 96px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
@@ -106,6 +111,7 @@ input[type=file] { font: inherit; max-width: 100%; }
 
 .msg { padding: .8rem 1rem; border-radius: 10px; margin: 1rem 0; }
 .msg.ok { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
+.msg.warn { background: color-mix(in srgb, #d98a1c 16%, transparent); color: var(--text); border-left: 4px solid #d98a1c; }
 .msg.err { background: color-mix(in srgb, var(--err) 15%, transparent); color: var(--err); }
 
 .video { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: var(--radius); background: #000; }

@@ -20,6 +20,7 @@
 <main class="wrap">
   <h1>Registrar visita</h1>
   <p class="lead">Llena este formulario <strong>en el sitio</strong>, justo después de cada visita. Tus códigos y el sitio quedan guardados en este celular para la próxima vez.</p>
+  <div class="msg warn">🌡️ <strong>Calor:</strong> visita entre las 8:00 y las 11:00, lleva agua y gorro. Si hay alerta de calor extremo, puedes mover la visita hasta ±3 días. <strong>No riegues las estaciones.</strong></div>
   <div id="pendientes"></div>
 
   <form id="form" novalidate>
@@ -76,6 +77,14 @@
         <label><input type="radio" name="riego" value="no sabe"> No sé</label>
       </div>
 
+      <label>¿Se regó el sitio en las últimas 24 h?</label>
+      <div class="choices">
+        <label><input type="radio" name="riego_24h" value="si" required> Sí</label>
+        <label><input type="radio" name="riego_24h" value="no"> No</label>
+        <label><input type="radio" name="riego_24h" value="no sabe"> No sé</label>
+        <label><input type="radio" name="riego_24h" value="restriccion"> Hay restricción o corte de riego</label>
+      </div>
+
       <label>Cobertura del suelo sobre las estaciones</label>
       <div class="choices">
         <label><input type="radio" name="cobertura" value="pasto" required> Pasto</label>
@@ -85,12 +94,43 @@
         <label><input type="radio" name="cobertura" value="suelo desnudo"> Suelo desnudo</label>
       </div>
 
-      <label>Sombra a mediodía</label>
-      <div class="choices">
-        <label><input type="radio" name="sombra" value="pleno sol" required> Pleno sol</label>
-        <label><input type="radio" name="sombra" value="media sombra"> Media sombra</label>
-        <label><input type="radio" name="sombra" value="sombra"> Sombra</label>
+      <label>Sombra sobre las estaciones a mediodía
+        <span class="hint">Piensa en un día típico de verano, entre las 12:00 y las 16:00. Si lo visitas en la mañana, imagina dónde estará el sol a mediodía.</span></label>
+      <div class="choices stacked">
+        <label><input type="radio" name="sombra" value="pleno sol (0-25%)" required>
+          <span><strong>☀️ Pleno sol · 0–25 %</strong><span class="hint">Sol directo casi todo el día. No hay copas de árboles ni muros que den sombra sobre las estaciones.</span></span></label>
+        <label><input type="radio" name="sombra" value="sombra parcial (25-50%)">
+          <span><strong>🌤️ Sombra parcial · 25–50 %</strong><span class="hint">Sol la mayor parte del día, con sombra solo algunas horas o de una copa lejana o muy rala.</span></span></label>
+        <label><input type="radio" name="sombra" value="media sombra (50-75%)">
+          <span><strong>⛅ Media sombra · 50–75 %</strong><span class="hint">Sombra moteada bajo una copa abierta (se ven manchas de sol en el suelo), o sombra durante la mitad del día.</span></span></label>
+        <label><input type="radio" name="sombra" value="sombra densa (>75%)">
+          <span><strong>🌳 Sombra densa · más de 75 %</strong><span class="hint">Bajo una copa cerrada o junto a un muro o edificio. Casi no llega sol directo al suelo.</span></span></label>
       </div>
+
+      <label>¿Qué produce la sombra? <span class="hint">Marca todo lo que corresponda.</span></label>
+      <div class="choices">
+        <label><input type="checkbox" name="fuente_sombra" value="arbol"> Árbol</label>
+        <label><input type="checkbox" name="fuente_sombra" value="arbusto"> Arbusto o seto</label>
+        <label><input type="checkbox" name="fuente_sombra" value="edificio o muro"> Edificio o muro</label>
+        <label><input type="checkbox" name="fuente_sombra" value="malla o toldo"> Malla o toldo</label>
+        <label><input type="checkbox" name="fuente_sombra" value="ninguna"> Nada (pleno sol)</label>
+      </div>
+      <label for="especie_arbol">Si hay árboles: especie o nombre común <span class="hint">Opcional. Ej.: plátano oriental, quillay, jacarandá, «no sé, hoja grande».</span></label>
+      <input id="especie_arbol" name="especie_arbol" type="text">
+
+      <label for="descripcion">Descripción del sitio
+        <span class="hint">En la instalación, describe el sitio completo. En los retiros, cuenta solo <strong>qué cambió</strong>. Toca un tema para agregarlo y complétalo:</span></label>
+      <div class="choices" id="ayudas">
+        <button type="button" class="chip" data-t="Alrededor (2 m): ">🌿 Alrededor</button>
+        <button type="button" class="chip" data-t="Uso: paso de personas/mascotas ">🚶 Uso y pisoteo</button>
+        <button type="button" class="chip" data-t="Manejo: corte de pasto / fertilización / hojarasca retirada ">✂️ Manejo</button>
+        <button type="button" class="chip" data-t="Pendiente: plano / inclinado ">⛰️ Pendiente</button>
+        <button type="button" class="chip" data-t="Distancia a pavimento o muro: __ m ">🧱 Pavimento cerca</button>
+        <button type="button" class="chip" data-t="Riego: tipo (aspersor/goteo/manguera) y horario ">💧 Tipo de riego</button>
+        <button type="button" class="chip" data-t="Superficie del suelo: grietas / costra / piedras ">🔍 Superficie</button>
+        <button type="button" class="chip" data-t="Cambio desde la última visita: ">🔄 Cambios</button>
+      </div>
+      <textarea id="descripcion" name="descripcion" rows="4" placeholder="Ej.: Plaza de barrio, césped regado por aspersor cada noche. Estaciones a 3 m de un plátano oriental grande; manchas de sol al mediodía. Paso de perros. Pasto cortado hace 1 semana. Plano, a 4 m de la vereda."></textarea>
     </fieldset>
 
     <fieldset>
@@ -100,6 +140,13 @@
           <input id="ph" name="ph" type="number" min="3" max="11" step="0.5" required inputmode="decimal"></div>
         <div><label for="ph_marca">Marca de las tiras</label>
           <input id="ph_marca" name="ph_marca" type="text" placeholder="La del kit"></div>
+      </div>
+
+      <div class="row">
+        <div><label for="temp_suelo">Temperatura del suelo a 8 cm (°C) <span class="hint">Mídela antes de cavar. <a href="tutoriales.html#temperatura">¿Cómo?</a></span></label>
+          <input id="temp_suelo" name="temp_suelo" type="number" min="0" max="70" step="0.5" required inputmode="decimal"></div>
+        <div><label for="temp_aire">Temperatura del aire (°C) <span class="hint">Opcional: la de tu app del tiempo</span></label>
+          <input id="temp_aire" name="temp_aire" type="number" min="-5" max="50" step="0.5" inputmode="decimal"></div>
       </div>
 
       <label>Humedad al tacto</label>
@@ -132,6 +179,7 @@
       <legend>5 · Material retirado</legend>
       <div class="row">
         <div><label for="estado_verde">Bolsas de té verde (2)</label><select id="estado_verde" name="estado_verde"></select></div>
+        <div><label for="estado_madera">Palitos de madera (2)</label><select id="estado_madera" name="estado_madera"></select></div>
       </div>
       <div class="choices" style="margin-top:1rem"><label><input type="checkbox" name="en_sobre" value="si"> Guardé todo en el sobre rotulado, sin lavar</label></div>
     </fieldset>
@@ -146,6 +194,10 @@
       <input id="foto_ph" type="file" accept="image/*" capture="environment">
       <div class="preview" id="prev_foto_ph"></div>
 
+      <label for="foto_cielo">Foto hacia el cielo desde las estaciones <span class="hint">Opcional. Celular a la altura del suelo, cámara mirando hacia arriba. Sirve para estimar la cobertura de copas.</span></label>
+      <input id="foto_cielo" type="file" accept="image/*" capture="environment">
+      <div class="preview" id="prev_foto_cielo"></div>
+
       <div class="only-retiro">
         <label for="foto_material">Material retirado sobre papel blanco</label>
         <input id="foto_material" type="file" accept="image/*" capture="environment" multiple>
@@ -155,7 +207,7 @@
 
     <fieldset>
       <legend>7 · Observaciones</legend>
-      <textarea id="obs" name="obs" rows="3" placeholder="Lombrices, hormigas, raíces dentro de la bolsa, estación removida, corte de pasto reciente…"></textarea>
+      <textarea id="obs" name="obs" rows="3" placeholder="Suelo agrietado, pasto quemado por el calor, lombrices, hormigas, raíces en la bolsa o el palito, hongos en la madera, estación removida, corte de pasto…"></textarea>
     </fieldset>
 
     <div id="estado"></div>

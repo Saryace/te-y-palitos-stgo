@@ -19,7 +19,7 @@
   COMUNAS.forEach((c) => sel.add(new Option(c, c)));
 
   const ESTADOS = ["", "Intacto", "Roto / rasgado", "Con raíces dentro", "Parcialmente encontrado", "No encontrado"];
-  ["estado_verde"].forEach((id) =>
+  ["estado_verde", "estado_madera"].forEach((id) =>
     ESTADOS.forEach((e) => $(id).add(new Option(e || "Selecciona…", e))));
 
   // Tipo de visita: preselecciona la más cercana a hoy
@@ -58,6 +58,16 @@
   vc.addEventListener("change", actualizarSecciones);
   actualizarSecciones();
 
+  // ---------- ayudas para la descripción ----------
+  $("ayudas").addEventListener("click", (ev) => {
+    const b = ev.target.closest(".chip");
+    if (!b) return;
+    const ta = $("descripcion");
+    ta.value = (ta.value.trim() ? ta.value.trim() + "\n" : "") + b.dataset.t;
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+  });
+
   // ---------- GPS ----------
   $("gps").addEventListener("click", () => {
     const msg = $("gps-msg");
@@ -75,7 +85,7 @@
   });
 
   // ---------- fotos (comprimidas en el navegador) ----------
-  const fotos = { foto_sitio: [], foto_ph: [], foto_material: [] };
+  const fotos = { foto_sitio: [], foto_ph: [], foto_material: [], foto_cielo: [] };
 
   function comprimir(file, max = 1280, q = 0.72) {
     return new Promise((res, rej) => {
@@ -155,7 +165,7 @@
     if (!fotos.foto_sitio.length) e.push("Falta la foto del sitio.");
     if (!fotos.foto_ph.length) e.push("Falta la foto de la tira de pH.");
     const v = visita();
-    if (v && v !== "T0" && !$("estado_verde").value) e.push("Indica el estado del material retirado.");
+    if (v && v !== "T0" && (!$("estado_verde").value || !$("estado_madera").value)) e.push("Indica el estado del material retirado.");
     return e;
   }
 
@@ -165,7 +175,9 @@
     const errs = errores();
     if (errs.length) { est.innerHTML = `<div class="msg err">${errs.join("<br>")}</div>`; return; }
 
-    const datos = Object.fromEntries(new FormData(form).entries());
+    const fd = new FormData(form);
+    const datos = Object.fromEntries(fd.entries());
+    datos.fuente_sombra = fd.getAll("fuente_sombra").join(", ");
     datos.participante = datos.participante.toUpperCase();
     datos.sitio = datos.sitio.toUpperCase();
     const reg = {

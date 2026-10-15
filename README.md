@@ -3,11 +3,11 @@
 **Piloto de ciencia ciudadana: descomposición de materia orgánica en suelos urbanos de Santiago de Chile**
 21 de diciembre de 2026 → 21 de marzo de 2027 · un retiro por mes · estudiantes con curso de Ciencia del Suelo que viven en el Gran Santiago
 
-Este piloto adapta el diseño de [Kotze & Setälä (2021, *Urban Ecosystems*)](https://doi.org/10.1007/s11252-021-01125-3), que midió la descomposición de té verde en bolsas piramidales (material lábil) en hábitats urbanos de Helsinki. Este piloto usa **solo té verde**, porque en 90 días es el material que muestra diferencias claras. En Santiago se agrega una variable clave para un clima mediterráneo: el **riego**.
+Este piloto adapta el diseño de [Kotze & Setälä (2021, *Urban Ecosystems*)](https://doi.org/10.1007/s11252-021-01125-3), que comparó la descomposición de material **lábil** (té verde en bolsas piramidales) y **recalcitrante** (palitos de madera) en hábitats urbanos de Helsinki. Este piloto usa los mismos dos materiales. En Santiago se agrega una variable clave para un clima mediterráneo: el **riego**.
 
 | | |
 |---|---|
-| **Material** | 2 bolsas piramidales de té verde por estación |
+| **Materiales** | 2 bolsas piramidales de té verde y 2 palitos de madera por estación |
 | **Diseño** | 3 estaciones por sitio, enterradas a 8 cm el 21 de diciembre; se retira **una por mes** (21 ene, 21 feb y 21 mar → 31, 62 y 90 días) |
 | **Datos de terreno** | Fotos, pH con tiras (1:2,5), textura al tacto (clave de Thien), humedad al tacto, hábitat, riego y GPS |
 | **Laboratorio** | Secado a 60 °C, pesaje, % de pérdida de masa y *k* exponencial |

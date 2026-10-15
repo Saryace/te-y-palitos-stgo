@@ -8,10 +8,10 @@ const CARPETA_FOTOS = 'te-bajo-tierra-fotos';   // se crea si no existe
 const HOJA = 'registros';
 const COLUMNAS = [
   'recibido', 'id', 'participante', 'sitio', 'email', 'comuna', 'lat', 'lon', 'gps_precision',
-  'visita', 'fecha', 'habitat', 'riego', 'cobertura', 'sombra',
-  'ph', 'ph_marca', 'humedad', 'textura', 'cinta_cm', 'sensacion',
-  'estado_verde', 'en_sobre', 'obs',
-  'fotos_sitio', 'fotos_ph', 'fotos_material', 'enviado_desde',
+  'visita', 'fecha', 'habitat', 'riego', 'riego_24h', 'cobertura', 'sombra', 'fuente_sombra', 'especie_arbol', 'descripcion',
+  'temp_suelo', 'temp_aire', 'ph', 'ph_marca', 'humedad', 'textura', 'cinta_cm', 'sensacion',
+  'estado_verde', 'estado_madera', 'en_sobre', 'obs',
+  'fotos_sitio', 'fotos_ph', 'fotos_material', 'fotos_cielo', 'enviado_desde',
 ];
 
 function doPost(e) {
@@ -30,6 +30,7 @@ function doPost(e) {
       r.fotos_sitio = guardarFotos_(carpeta, r.id + '_sitio', f.foto_sitio);
       r.fotos_ph = guardarFotos_(carpeta, r.id + '_ph', f.foto_ph);
       r.fotos_material = guardarFotos_(carpeta, r.id + '_material', f.foto_material);
+      r.fotos_cielo = guardarFotos_(carpeta, r.id + '_cielo', f.foto_cielo);
       r.recibido = new Date();
       hoja.appendRow(COLUMNAS.map((c) => (r[c] === undefined ? '' : r[c])));
     }
