@@ -63,6 +63,8 @@ Los autores lo atribuyen a una comunidad pobre de hongos saprófitos en la ciuda
 | `JAR` | Jardín doméstico o huerto | — (nuevo) |
 | `NAT` | Vegetación nativa remanente (cerro isla, piedemonte) | Semi-natural (referencia) |
 
+- **Zonas de calor (SantiagoHOT):** además del hábitat, la coordinación busca repartir los sitios entre las **zonas frescas, intermedias y calientes** de los mapas de calor de [SantiagoHOT](https://www.santiagohot.cl). Es una campaña ciudadana de CIGIDEN, parte del programa Heat Watch de NOAA, que midió la temperatura del aire en todo el Gran Santiago el 20 de enero de 2024 (7–8, 15–16 y 19–20 h). Al inscribirse, se ubica el sitio en el mapa de la tarde para asignar su zona.
+
 ---
 
 ## 3. Materiales
@@ -78,7 +80,7 @@ Los autores lo atribuyen a una comunidad pobre de hongos saprófitos en la ciuda
 | Tiras de pH (rango 4–9 o 0–14, paso ≤ 0,5) | 8 | Igual marca para todos |
 | Agua destilada (frasco 250 mL) | 1 | Para pH y textura |
 | Frasco con tapa (vaso de muestra 50–100 mL) | 1 | Suspensión suelo:agua para pH |
-| *Opcional:* termómetro digital de **punzón tipo cocina** (±1 °C) o **infrarrojo** | 1 | Temperatura del suelo: a 8 cm con punzón o en la superficie con infrarrojo. Lo aporta el estudiante si tiene uno, o la coordinación según disponibilidad |
+| *Opcional:* termómetro digital **metálico tipo cocina** (±1 °C) o **infrarrojo** | 1 | Temperatura del suelo: a 8 cm con el metálico o en la superficie con infrarrojo. Lo aporta el estudiante si tiene uno, o la coordinación según disponibilidad |
 
 **Opcional (submuestra de ~6 sitios, uno por hábitat):** un registrador de temperatura (tipo iButton o HOBO) enterrado a 8 cm junto a la estación R3, programado cada 1 h. Así se mide cuánto se calienta el suelo durante las olas de calor.
 
@@ -166,13 +168,21 @@ Registrar la **clase textural**, el **largo de la cinta (cm)** y la sensación.
 | Húmedo | Forma bola, deja la mano algo húmeda |
 | Saturado | Escurre agua al apretar |
 
-### 5.6 Temperatura del suelo (opcional)
+### 5.6 Temperatura: zonas SantiagoHOT y medición opcional
+
+**La covariable de temperatura del piloto es la zona de calor de SantiagoHOT**, que se asigna a todos los sitios con sus coordenadas, sin depender de que el estudiante tenga termómetro:
+
+1. Descargar los mapas de temperatura ambiental modelada (tarde, 15–16 h) del [conjunto de datos abierto de SantiagoHOT en OSF](https://osf.io/wx3r2/overview?view_only=2d8935fd8d354c28982e81f9452f41df) y guardarlos como `datos/santiagohot_tarde.tif`.
+2. El script `analisis/analisis_piloto.R` extrae la temperatura en la ubicación de cada sitio y la clasifica en terciles: **fresca**, **intermedia** y **caliente**.
+3. Se usan tanto el valor continuo (°C) como la zona en los modelos.
+
+**Temperatura del suelo medida en terreno (opcional)**
 
 Es opcional y depende de que el estudiante tenga termómetro. Se mide **antes de cavar**, a 10 cm de la estación que se retira (en la instalación, de la R1). En el formulario se indica el método, porque los dos miden cosas distintas:
 
 | Método | Cómo | Qué mide |
 |---|---|---|
-| **Punzón tipo cocina** | Introducir hasta **8 cm**, a la sombra del propio cuerpo; esperar ~1 min a que se estabilice | Temperatura en la zona de los materiales |
+| **Metálico tipo cocina** | Introducir la varilla hasta **8 cm**, a la sombra del propio cuerpo; esperar ~1 min a que se estabilice | Temperatura en la zona de los materiales |
 | **Infrarrojo** | Apuntar en perpendicular a la superficie, a 15–30 cm, sin mover pasto ni hojarasca; emisividad 0,95 si es ajustable | Temperatura de la superficie (puede superar 50–60 °C a pleno sol) |
 
 Anotar el valor en °C. La hora queda registrada en el formulario. En el análisis, cada método se trata por separado.
@@ -202,7 +212,7 @@ El verano en Santiago trae **olas de calor**: según la Dirección Meteorológic
 4. Calcular:
    - **Pérdida de masa (%)** = (M0 − Mt) / M0 × 100, corregida con los controles de manipulación.
    - ***k*** por sitio, ajustando *ln(Mt/M0) = −k·t* con los 3 retiros, por separado para el té y la madera.
-5. Modelos: pérdida de masa ~ material × hábitat + riego + días de ola de calor + pH + textura, con el sitio como efecto aleatorio. Interacción riego × días de ola de calor para probar H5. Ver `analisis/analisis_piloto.R`.
+5. Modelos: pérdida de masa ~ material × hábitat + riego + zona de calor SantiagoHOT + días de ola de calor + pH + textura, con el sitio como efecto aleatorio. Interacción riego × días de ola de calor para probar H5. Ver `analisis/analisis_piloto.R`.
 
 ---
 
@@ -232,7 +242,9 @@ Si se cumplen, se propone escalar a **un año completo**, dejar palitos enterrad
 
 ## Agradecimientos
 
-Este piloto es financiado por el proyecto **Fondecyt de Iniciación 2026** de Sara Acevedo (ANID).
+Este piloto es financiado por ANID, **Fondecyt Iniciación en Investigación 2026, código 11260726** (investigadora responsable: Sara Acevedo), y cuenta con el apoyo de **CEDEUS**, Centro de Desarrollo Urbano Sustentable (**CIN25009**).
+
+Gracias a **Dylan Craven** por sus comentarios al diseño del piloto.
 
 Agradecemos de antemano a todas y todos los participantes: sin su tiempo, sus jardines y sus visitas bajo el sol de verano, este proyecto no sería posible. 🍵🪵
 
@@ -240,5 +252,6 @@ Gracias a [Soil BON](https://geobon.org/bons/thematic-bon/soil-bon/) (Soil Biodi
 
 ## Referencias
 
+- SantiagoHOT (2024). Campaña de medición de calor urbano en el Gran Santiago, CIGIDEN / programa Heat Watch de NOAA. https://www.santiagohot.cl · datos: https://osf.io/wx3r2/overview?view_only=2d8935fd8d354c28982e81f9452f41df
 - Kotze, D. J., & Setälä, H. (2021). Urbanisation differently affects decomposition rates of recalcitrant woody material and labile leaf litter. *Urban Ecosystems*. https://doi.org/10.1007/s11252-021-01125-3
 - Thien, S. J. (1979). A flow diagram for teaching texture-by-feel analysis. *Journal of Agronomic Education*, 8, 54–55.

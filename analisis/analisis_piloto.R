@@ -5,6 +5,7 @@
 #   datos/registros.csv        (exportado de la planilla de Google, hoja "registros")
 #   datos/dmc_diario.csv       (opcional: estacion, fecha, tmax, umbral_p90; datos diarios de la DMC)
 #   datos/sitio_estacion.csv   (opcional: sitio, estacion; estación DMC más cercana a cada sitio)
+#   datos/santiagohot_tarde.tif (opcional: mapa de temperatura de la tarde de SantiagoHOT, desde OSF)
 # Salidas:
 #   datos/publicos/registros_publicos.csv (sin correo, coordenadas a 3 decimales)
 #   datos/publicos/descomposicion.csv     (pérdida de masa y k por sitio × material)
@@ -96,13 +97,31 @@ cov <- reg |>
     comuna = first(comuna),
     riego = names(which.max(table(riego))),
     ph_medio = mean(ph, na.rm = TRUE),
-    # Temperatura opcional: punzón (8 cm) e infrarrojo (superficie) miden cosas distintas
-    temp_8cm_media = mean(temp_suelo[metodo_temp %in% "punzon 8 cm"], na.rm = TRUE),
+    # Temperatura opcional: metálico (8 cm) e infrarrojo (superficie) miden cosas distintas
+    temp_8cm_media = mean(temp_suelo[metodo_temp %in% "metalico 8 cm"], na.rm = TRUE),
     temp_sup_media = mean(temp_suelo[metodo_temp %in% "infrarrojo superficie"], na.rm = TRUE),
     sombra = first(sombra),
     textura = first(na.omit(textura)),
     .groups = "drop"
   )
+
+# Zona de calor SantiagoHOT: temperatura del mapa de la tarde en la ubicación de cada sitio
+coords <- reg |>
+  group_by(sitio) |>
+  summarise(lat = median(lat, na.rm = TRUE), lon = median(lon, na.rm = TRUE), .groups = "drop")
+if (file.exists("datos/santiagohot_tarde.tif") && requireNamespace("terra", quietly = TRUE)) {
+  r <- terra::rast("datos/santiagohot_tarde.tif")
+  pts <- terra::project(terra::vect(coords, geom = c("lon", "lat"), crs = "EPSG:4326"), terra::crs(r))
+  coords$temp_stgohot <- terra::extract(r, pts)[[2]]
+  cortes <- quantile(coords$temp_stgohot, c(0, 1/3, 2/3, 1), na.rm = TRUE)
+  coords$zona_calor <- if (n_distinct(cortes) == 4) {
+    as.character(cut(coords$temp_stgohot, cortes, labels = c("fresca", "intermedia", "caliente"), include.lowest = TRUE))
+  } else NA_character_
+} else {
+  coords$temp_stgohot <- NA_real_
+  coords$zona_calor <- NA_character_
+}
+cov <- left_join(cov, select(coords, sitio, temp_stgohot, zona_calor), by = "sitio")
 
 desc <- left_join(k_sitio, cov, by = "sitio")
 
@@ -111,7 +130,7 @@ if (requireNamespace("lme4", quietly = TRUE) && n_distinct(masa$sitio) > 5) {
   datos_mod <- left_join(masa, cov, by = "sitio")
   # Solo términos con variación (en un piloto chico algún factor puede tener un solo nivel)
   varia <- function(v) n_distinct(na.omit(datos_mod[[v]])) > 1
-  terminos <- c("t_dias", Filter(varia, c("material", "habitat", "sombra", "riego", "ph_medio")))
+  terminos <- c("t_dias", Filter(varia, c("material", "habitat", "sombra", "riego", "ph_medio", "temp_stgohot")))
   if ("material" %in% terminos && "habitat" %in% terminos) terminos <- c(terminos, "material:habitat")
   # H5: ¿las olas de calor frenan la descomposición, sobre todo sin riego?
   if (varia("dias_ola")) {
